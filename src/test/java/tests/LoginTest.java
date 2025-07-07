@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import io.qameta.allure.Description;
 import pages.LoginPage;
 import utils.ConfigReader;
-// Removed unused import utils.DriverFactory;
+
 
 public class LoginTest extends BaseTest {
 	
@@ -24,6 +24,7 @@ public class LoginTest extends BaseTest {
 	    @Description("Valid login with upasana.pal@intellias.com and URL validation after clicking welcome message.")
 	    public void loginAndValidateUrl(String username, String password) {
 			// Removed redundant ConfigReader instance creation.
+	    	
 			ConfigReader configreader = getConfigReader(); // Get ConfigReader from BaseTest
 			LoginPage loginPage = new LoginPage(getDriver());
 
@@ -31,6 +32,7 @@ public class LoginTest extends BaseTest {
 			loginPage.login(username, password);
 
 			// Add explicit wait for an element on the page after login
+			
 			getWait().until(ExpectedConditions.urlToBe("https://demowebshop.tricentis.com/")); // Example: wait for URL to be the expected URL
 			String expectedUrl = "https://demowebshop.tricentis.com/";
 			String actualUrl = getDriver().getCurrentUrl();

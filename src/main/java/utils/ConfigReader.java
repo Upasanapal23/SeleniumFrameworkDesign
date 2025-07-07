@@ -54,18 +54,21 @@ public class ConfigReader {
     }
 
     /**
-     * Gets the explicit wait timeout from the config.properties file.
+     *  notes Gets the explicit wait timeout from the config.properties file.
      * Returns a default value of 20 seconds if the property is not found or invalid.
      */
+    
     public long getExplicitWaitTimeout() {
         String timeout = properties.getProperty("explicitWaitTimeout");
         if (timeout != null) {
             try {
                 return Long.parseLong(timeout);
             } catch (NumberFormatException e) {
-                // Log or handle the exception if the value is not a valid number
+                
+            	// Log or handle the exception if the value is not a valid number
             }
         }
+        
         return 20; // Default to 20 seconds if the property is not found or invalid
     }
 }
