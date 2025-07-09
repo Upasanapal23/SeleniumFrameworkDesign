@@ -13,7 +13,7 @@ public class ConfigReader {
     private ConfigReader() {
         Logger logger = Logger.getLogger(ConfigReader.class.getName());
         properties = new Properties();
-        try (FileInputStream fis = new FileInputStream("src/test/resources/config.properties")) {
+        try (FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/resources/config.properties")) {
             properties.load(fis);
         } catch (IOException e) {
             e.printStackTrace();

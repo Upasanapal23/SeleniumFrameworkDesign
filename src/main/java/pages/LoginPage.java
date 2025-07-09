@@ -5,39 +5,42 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.Duration;
+
+
 public class LoginPage extends BasePage {
 
-    @FindBy(id = "user-name")
-    private WebElement usernameInput;
+    @FindBy(id = "Email")
+    private WebElement emailInput;
 
-    @FindBy(id = "password")
+    @FindBy(id = "Password")
     private WebElement passwordInput;
 
-    @FindBy(id = "login-button")
+    @FindBy(css = "input[type='submit'][value='Log in']")
     private WebElement loginButton;
+
+    @FindBy(css = ".error-message-container") // Example selector for an error message container
+    private WebElement errorMessageContainer;
+
+    @FindBy(id = "shopping_cart_container")
+    // Example selector for an element present after successful login (e.g., shopping cart icon)
+    private WebElement shoppingCartIcon; // Assuming this element is visible after successful login
 
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public LoginPage enterUsername(String username) {
-        sendKeys(usernameInput, username);
-        return this;
-    }
 
-    public LoginPage enterPassword(String password) {
-        sendKeys(passwordInput, password);
-        return this;
-    }
 
     public void clickLogin() {
+        waitForVisibility(loginButton, Duration.ofSeconds(10)); // Wait for login button to be visible
         click(loginButton);
     }
 
- public void login(String username, String password) {
-        enterUsername(username);
-        enterPassword(password);
+    public void login(String username, String password) {
+        enterTextInField(emailInput, username);
+        enterTextInField(passwordInput, password);
         clickLogin();
     }
 }

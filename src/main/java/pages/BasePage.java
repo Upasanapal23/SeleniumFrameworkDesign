@@ -20,13 +20,17 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
-    protected void sendKeys(WebElement element, String text) {
+    protected void enterTextInField(WebElement element, String text) {
         wait.until(ExpectedConditions.visibilityOf(element)).clear();
         element.sendKeys(text);
     }
 
     protected String getText(WebElement element) {
         return wait.until(ExpectedConditions.visibilityOf(element)).getText();
+    }
+
+    protected void waitForVisibility(WebElement element, Duration timeout) {
+        new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOf(element));
     }
 }
 
